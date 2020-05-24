@@ -12,6 +12,8 @@ const domStrings = {
 
   loadingDiv: ".single-loading",
   playlistLoadingDiv: ".playlist-loading",
+
+  playlistLoadingText: ".playlist-loading-text",
 };
 
 const formPlaylist = document.querySelector(domStrings.formPlaylist);
@@ -26,6 +28,9 @@ const successSingle = document.querySelector(domStrings.successSingle);
 
 const loading = document.querySelector(domStrings.loadingDiv);
 const playlistLoading = document.querySelector(domStrings.playlistLoadingDiv);
+const playlistLoadingText = document.querySelector(
+  domStrings.playlistLoadingTextDiv
+);
 
 if (formPlaylist) {
   formPlaylist.addEventListener("submit", function (e) {

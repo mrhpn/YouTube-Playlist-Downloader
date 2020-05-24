@@ -26,7 +26,7 @@ async function singleVideo(req, res) {
       .json({ error: true, message: "Please provide a youtube video linkd." });
 
   try {
-    await linkCheck(link, (error, result) => {
+    linkCheck(link, (error, result) => {
       if (error || result.status === "dead") {
         console.log(error, result.status);
         return res.status(400).json({
@@ -35,11 +35,17 @@ async function singleVideo(req, res) {
             "Your link might seem be unalive or youtube has removed the video associated with the link.",
         });
       }
-
       // valid...
       let pyshell = new PythonShell("./scripts/singlevideo.py");
-
       pyshell.send(JSON.stringify([link]));
+
+      pyshell.on("message", (message) => {
+        if (message === "downloaded")
+          return res.status(200).json({
+            success: true,
+            message: "Successfully downloaded! Check your folder.",
+          });
+      });
 
       pyshell.end(function (err) {
         if (err) {
@@ -48,11 +54,6 @@ async function singleVideo(req, res) {
             message: "Something went wrong. Please try again.",
           });
         }
-
-        return res.status(200).json({
-          success: true,
-          message: "Successfully downloaded! Check your folder.",
-        });
       });
     });
   } catch (error) {
@@ -74,7 +75,7 @@ async function playlist(req, res) {
       .json({ error: true, message: "Please provide a youtube video link." });
 
   try {
-    await linkCheck(link, (error, result) => {
+    linkCheck(link, (error, result) => {
       if (error || result.status === "dead") {
         return res.status(400).json({
           error: true,
@@ -85,8 +86,15 @@ async function playlist(req, res) {
 
       // valid...
       let pyshell = new PythonShell("./scripts/playlist.py");
-
       pyshell.send(JSON.stringify([link]));
+
+      pyshell.on("message", (message) => {
+        if (message === "downloaded")
+          return res.status(200).json({
+            success: true,
+            message: "Successfully downloaded! Check your folder.",
+          });
+      });
 
       pyshell.end(function (err) {
         if (err) {
@@ -95,11 +103,6 @@ async function playlist(req, res) {
             message: "Something went wrong. Please try again.",
           });
         }
-
-        return res.status(200).json({
-          success: true,
-          message: "Successfully downloaded! Check your folder.",
-        });
       });
     });
   } catch (error) {
