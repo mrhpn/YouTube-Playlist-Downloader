@@ -28,6 +28,8 @@ async function singleVideo(req, res) {
   try {
     await linkCheck(link, (error, result) => {
       if (error || result.status === "dead") {
+        console.log(error);
+        console.log(result.status);
         return res.status(400).json({
           error: true,
           message:
