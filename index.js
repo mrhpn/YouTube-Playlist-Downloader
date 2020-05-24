@@ -12,6 +12,8 @@ app.use(express.static(`${__dirname}/public`));
 app.post("/single", singleVideo);
 app.post("/playlist", playlist);
 
+app.get("/about", (req, res) => res.render("about"));
+app.get("/contact", (req, res) => res.render("contact"));
 app.get("/single", (req, res) => res.render("single"));
 app.get("/", (req, res) => res.render("index"));
 
