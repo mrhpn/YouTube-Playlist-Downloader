@@ -36,8 +36,15 @@ if (formPlaylist) {
     playlistLoading.classList.remove("hidden");
 
     const link = inputPlaylist.value;
+
+    if (!link) {
+      playlistLoading.classList.add("hidden");
+      errorPlaylist.textContent = "Please provide a youtube video link.";
+      return;
+    }
+
     let payload = { link: link };
-    fetch("http://localhost:3000/playlist", {
+    fetch("/playlist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -74,7 +81,7 @@ if (formSingle) {
 
     const link = inputSingle.value;
     let payload = { link: link };
-    fetch("http://localhost:3000/single", {
+    fetch("/single", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
