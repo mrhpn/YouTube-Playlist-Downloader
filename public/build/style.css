@@ -1,0 +1,58 @@
+.my-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+.svg1 {
+  position: absolute;
+  height: 20rem;
+  transform: translateX(-8rem) translateY(50%) rotate(-20deg);
+  opacity: 0.6;
+  animation: animate_svg1 1s;
+  transition: all ease-in 0.3s;
+}
+
+.svg2 {
+  position: absolute;
+  height: 15rem;
+  transform: translateX(80rem) translateY(200%) rotate(0deg);
+  opacity: 0.6;
+  animation: animate_svg2 1s;
+  transition: all ease-in 0.3s;
+}
+
+@keyframes animate_svg1 {
+  0% {
+    transform: translateX(-8rem) translateY(50%) rotate(-20deg);
+  }
+
+  50% {
+    transform: translateX(8rem) translateY(50%) rotate(-20deg);
+  }
+
+  100% {
+    transform: translateX(-8rem) translateY(50%) rotate(-20deg);
+  }
+}
+
+@keyframes animate_svg2 {
+  0% {
+    transform: translateX(80rem) translateY(200%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(70rem) translateY(200%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateX(80rem) translateY(200%) rotate(0deg);
+  }
+}
