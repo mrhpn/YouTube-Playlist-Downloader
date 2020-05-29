@@ -13,7 +13,7 @@ You have to do just 3 steps.
 
 ## Technologies Used
 
-It is written with Node.js express and for the real video downloading task, with python, python-shell.
+It is written with `tailwindcss` for the front-end, Node.js `express` for back-end and for the real video downloading task, with python, `python-shell`.
 
 ## v1.0.0
 
