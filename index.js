@@ -28,11 +28,11 @@ async function singleVideo(req, res) {
   try {
     linkCheck(link, (error, result) => {
       if (error || result.status === "dead") {
-        console.log(error, result.status);
+        console.log(error, link + " is " + result.status);
         return res.status(400).json({
           error: true,
           message:
-            "Your link might seem be unalive or youtube has removed the video associated with the link.",
+            "Your link might be unalive or youtube has removed the video associated with the link.",
         });
       }
       // valid...
@@ -61,7 +61,7 @@ async function singleVideo(req, res) {
     return res.status(400).json({
       error,
       message:
-        "Your link might seem be unalive or youtube has removed the video associated with the link.",
+        "Your link might be unalive or youtube has removed the video associated with the link.",
     });
   }
 }
@@ -80,7 +80,7 @@ async function playlist(req, res) {
         return res.status(400).json({
           error: true,
           message:
-            "Your link might seem be unalive or youtube has removed the video associated with the link.",
+            "Your link might be unalive or youtube has removed the video associated with the link.",
         });
       }
 
@@ -110,7 +110,7 @@ async function playlist(req, res) {
     return res.status(400).json({
       error,
       message:
-        "Your link might seem be unalive or youtube has removed the video associated with the link.",
+        "Your link might seem unalive or youtube has removed the video associated with the link.",
     });
   }
 }
